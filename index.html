@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d18"><title>NorthSide Community</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="#"><span class="brand-mark">N</span><span>NORTHSIDE<small>COMMUNITY</small></span></a>
+<nav><a href="#miembros">Miembros</a><a href="#foro">Foro</a><a href="#ranking">Ranking</a><a href="#colaboracion">Colaboración</a></nav>
+<div class="auth-actions" id="authActions"><button class="btn ghost" onclick="openAuth('login')">Entrar</button><button class="btn primary" onclick="openAuth('register')">Registrarse</button></div>
+<div class="user-actions hidden" id="userActions"><span id="welcome"></span><button class="btn ghost" onclick="logout()">Salir</button></div>
+</header>
+<main>
+<section class="hero">
+<div class="hero-copy"><div class="eyebrow"><span class="pulse"></span> COMUNIDAD GAMING · DESDE 2026</div>
+<h1>WE ARE<br><span>NORTHSIDE.</span></h1><p>Una comunidad. Diferentes juegos. La misma mentalidad.<br>Competimos, creamos y crecemos juntos.</p>
+<div class="hero-actions"><a class="btn primary" href="#miembros">Conocer el equipo</a><a class="btn ghost" href="#foro">Entrar al foro</a></div>
+<div class="hero-stats"><div><strong id="memberCount">—</strong><small>MIEMBROS</small></div><div><strong id="topicCount">—</strong><small>CONVERSACIONES</small></div><div><strong>01</strong><small>COMMUNITY</small></div></div></div>
+<div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="ns-emblem">N<span>S</span></div><div class="art-label">NORTHSIDE<br><b>EST. 2026</b></div><div class="art-line"></div></div>
+</section>
+<section class="section" id="miembros"><div class="section-head"><div><div class="eyebrow">EL EQUIPO</div><h2>NUESTROS <span>MIEMBROS</span></h2><p>La comunidad crece con cada persona que se une.</p></div><span class="live-tag">● ACTUALIZADO EN VIVO</span></div><div class="member-grid" id="members"><div class="empty">Cargando miembros...</div></div></section>
+<section class="section forum-section" id="foro"><div class="section-head"><div><div class="eyebrow">NORTHSIDE DISCUSSIONS</div><h2>MINI <span>FORO</span></h2><p>Comparte ideas, habla de juegos y conversa con el equipo.</p></div><button class="btn primary" onclick="openTopic()">＋ Crear tema</button></div><div id="topics" class="topic-list"><div class="empty">Cargando conversaciones...</div></div></section>
+<section class="section" id="ranking"><div class="section-head"><div><div class="eyebrow">COMPETITIVE RECORD</div><h2>TOP <span>RANKING</span></h2><p>Los miembros con mayor puntuación de la comunidad.</p></div></div><div class="ranking-layout"><div class="ranking-main" id="rankingList"><div class="empty">Cargando ranking...</div></div><aside class="featured"><div class="eyebrow">NORTHSIDE ELITE</div><h3>LOS DESTACADOS</h3><p>Miembros reconocidos por su aporte y participación.</p><div id="featuredList"></div></aside></div></section>
+<section class="collab" id="colaboracion"><div class="collab-mark">S<span>V</span></div><div><div class="eyebrow">CREATIVE PARTNER</div><h2>COLABORACIÓN CON<br><span>SECK VISUALS</span></h2><p>Diseño, identidad visual y creatividad para proyectos que buscan destacar.</p><a class="btn light" href="https://seckvisuals.stream" target="_blank" rel="noopener">Conocer SECK VISUALS ↗</a></div><div class="collab-side">NORTHSIDE × SECK VISUALS</div></section>
+<footer><a class="brand" href="#"><span class="brand-mark">N</span><span>NORTHSIDE<small>COMMUNITY</small></span></a><span>Built for the community.</span><span>© 2026 NORTHSIDE</span></footer>
+</main>
+<div class="modal hidden" id="authModal"><div class="modal-card"><button class="close" onclick="closeModal('authModal')">×</button><div class="eyebrow">NORTHSIDE ACCOUNT</div><h2 id="authTitle">INICIAR SESIÓN</h2><form id="authForm"><div id="registerFields" class="hidden"><label>Nombre de usuario<input name="username" minlength="3" maxlength="24" placeholder="Tu nombre en NorthSide"></label></div><label>Correo electrónico<input name="email" type="email" required placeholder="correo@ejemplo.com"></label><label>Contraseña<input name="password" type="password" minlength="10" required placeholder="Mínimo 10 caracteres"></label><button class="btn primary full" id="authSubmit">Entrar</button><p class="form-note" id="authSwitch">¿No tienes cuenta? <a href="#" onclick="openAuth('register');return false">Regístrate</a></p><p class="error" id="authError"></p></form></div></div>
+<div class="modal hidden" id="topicModal"><div class="modal-card"><button class="close" onclick="closeModal('topicModal')">×</button><div class="eyebrow">COMMUNITY FORUM</div><h2>NUEVO TEMA</h2><form id="topicForm"><label>Título<input name="title" maxlength="100" required placeholder="¿De qué quieres hablar?"></label><label>Mensaje<textarea name="body" maxlength="3000" required placeholder="Escribe tu publicación..."></textarea></label><button class="btn primary full">Publicar tema</button><p class="error" id="topicError"></p></form></div></div>
+<div class="modal hidden" id="replyModal"><div class="modal-card"><button class="close" onclick="closeModal('replyModal')">×</button><div class="eyebrow">CONVERSACIÓN</div><h2 id="replyTitle">RESPUESTAS</h2><div id="replies"></div><form id="replyForm"><label>Tu respuesta<textarea name="body" maxlength="2000" required placeholder="Escribe una respuesta..."></textarea></label><button class="btn primary full">Responder</button><p class="error" id="replyError"></p></form></div></div>
+<div class="admin-panel hidden" id="adminPanel"><div class="admin-head"><b>ADMIN CONTROL</b><button class="btn ghost" onclick="toggleAdmin()">Cerrar</button></div><p>Actualiza puntos y miembros destacados. Los cambios se reflejan en el ranking.</p><div id="adminUsers"></div></div>
+<button class="admin-fab hidden" id="adminFab" onclick="toggleAdmin()">⚙ Admin</button>
+<script src="/app.js"></script>
+</body></html>
